@@ -28,5 +28,35 @@ namespace Mission04
                 }
             }
         }
+
+        public static bool CheckWinner(string[] choices)
+        {
+            // Define the possible winning combinations
+            int[][] winningCombinations = new int[][]
+                {
+            new int[] { 0, 1, 2 },
+            new int[] { 3, 4, 5 },
+            new int[] { 6, 7, 8 },
+            new int[] { 0, 3, 6 },
+            new int[] { 1, 4, 7 },
+            new int[] { 2, 5, 8 },
+            new int[] { 0, 4, 8 },
+            new int[] { 2, 4, 6 }
+                };
+
+            // Check for a winner
+            foreach (var combination in winningCombinations)
+            {
+                if (choices[combination[0]] == choices[combination[1]] && choices[combination[1]] == choices[combination[2]])
+                {
+                    return true;
+                }
+            }
+
+            // No winner found
+            return false;
+        }
+        }
+
     }
-}
+
