@@ -3,8 +3,8 @@
 List<string> choices = new List<string>();
 int numPlayers = 0;
 Boolean gameOver = false;
-Receives r = new Receives();
-char currentPlayer = 'X';
+Receives r = new Receives(); //Why error
+string currentPlayer = "X";
 string input = "";
 
 Console.WriteLine("How many people are playing");
@@ -21,14 +21,26 @@ do
 
     if (int.TryParse(input, out int position) && position >= 1 && position <= 9)
     {
-        if (r.CheckWinner(choices))
+        choices[position - 1] = currentPlayer;
+        r.CheckWinner(choices); //Which variable
+
+    }
+
+
+
+    else
+    {
+        if (currentPlayer == "X")
         {
-        
+            currentPlayer = "O";
+        }
+
+        else
+        {
+            currentPlayer = "X";
         }
     }
 
-    choices.Add();
 
-    else (currentPlayer = currentPlayer == 'X' ? 'O' : 'O') ;
 
-} while (!gameOver)
+} while (!gameOver);
