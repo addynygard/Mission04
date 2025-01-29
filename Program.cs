@@ -36,7 +36,7 @@ class Program
                     gameOver = true;
                 }
                 // Checks for tie
-                else if (IsBoardFull(choices))
+                else if (Receives.IsBoardFull(choices))
                 {
                     Receives.ReceiveArray(choices);
                     Console.WriteLine("The game is a tie!");

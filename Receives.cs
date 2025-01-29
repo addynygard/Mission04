@@ -58,7 +58,7 @@ namespace Mission04
         }
 
         // Checks for ties
-        static bool IsBoardFull(string[] choices)
+        public static bool IsBoardFull(string[] choices)
         {
             foreach (var spot in choices)
             {
