@@ -16,7 +16,7 @@ namespace Mission04
 
                 if ((i +1) % 3 != 0)
                 {
-                    Console.WriteLine("|");
+                    Console.Write("|");
                 }
                 else
                 {
@@ -56,7 +56,20 @@ namespace Mission04
             // No winner found
             return false;
         }
+
+        // Checks for ties
+        static bool IsBoardFull(string[] choices)
+        {
+            foreach (var spot in choices)
+            {
+                if (spot != "X" && spot != "O")
+                {
+                    return false; 
+                }
+            }
+            return true; 
         }
+    }
 
     }
 

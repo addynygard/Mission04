@@ -1,48 +1,64 @@
 ﻿using Mission04;
 
-Console.WriteLine("Welcome to Tic-Tac-Toe");
-
-List<string> choices = new List<string>();
-int numPlayers = 0;
-Boolean gameOver = false;
-Receives r = new Receives(); //Why error
-string currentPlayer = "X";
-string input = "";
-
-Console.WriteLine("How many people are playing");
-numPlayers = int.Parse(Console.ReadLine());
-
-
-do
+class Program
 {
-    // print array
-    r.ReceivesArray();
-
-    Console.WriteLine($"Player {currentPlayer}, choose position (1-9).");
-    input = Console.ReadLine();
-
-    if (int.TryParse(input, out int position) && position >= 1 && position <= 9)
+    static void Main()
     {
-        choices[position - 1] = currentPlayer;
-        r.CheckWinner(choices); //Which variable
+        Console.WriteLine("Welcome to Tic-Tac-Toe\n");
 
+
+        string[] choices = new string[9] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        bool gameOver = false;
+        string currentPlayer = "X";
+        string input = " ";
+
+
+        do
+        {
+            // Prints the array
+            Receives.ReceiveArray(choices);
+            
+            // Writes line for current player choice
+            Console.WriteLine($"\nPlayer {currentPlayer}, choose position (1-9):");
+            input = Console.ReadLine();
+
+            // Pulls the position for the guess and assigns it to the array
+            if (int.TryParse(input, out int position) && position >= 1 && position <= 9 && choices[position - 1] != "X" && choices[position - 1] != "O")
+            {
+                
+                choices[position - 1] = currentPlayer;
+
+                // Checks a winner
+                if (Receives.CheckWinner(choices))
+                {
+                    Receives.ReceiveArray(choices);
+                    Console.WriteLine($"Player {currentPlayer} wins!");
+                    gameOver = true;
+                }
+                // Checks for tie
+                else if (IsBoardFull(choices))
+                {
+                    Receives.ReceiveArray(choices);
+                    Console.WriteLine("The game is a tie!");
+                    gameOver = true;
+                }
+
+                // Switches player
+                else
+                {
+                    
+                    currentPlayer = (currentPlayer == "X") ? "O" : "X";
+                }
+            }
+
+            // Validates input is not already taken
+            else
+            {
+                
+                Console.WriteLine("Invalid input or spot already taken. Please choose a valid position (1-9).");
+            }
+        } while (!gameOver); // Keeps game going until finished
     }
 
 
-
-    else
-    {
-        if (currentPlayer == "X")
-        {
-            currentPlayer = "O";
-        }
-
-        else
-        {
-            currentPlayer = "X";
-        }
-    }
-
-
-
-} while (!gameOver);
+}
