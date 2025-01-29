@@ -8,8 +8,10 @@ namespace Mission04
 {
     internal class Receives
     {
+        // Creates a method that receives the board array from driver class
         public static void ReceiveArray(string[] choices)
         {
+            // Prints the board as a real tic tac toe board
             for (int i = 0; i < choices.Length; i++)
             {
                 Console.Write(choices[i]);
@@ -29,6 +31,7 @@ namespace Mission04
             }
         }
 
+        // Checks who has won the game
         public static bool CheckWinner(string[] choices)
         {
             // Define the possible winning combinations
@@ -57,7 +60,7 @@ namespace Mission04
             return false;
         }
 
-        // Checks for ties
+        // Checks for ties, goes through board and checks if there's any open spots
         public static bool IsBoardFull(string[] choices)
         {
             foreach (var spot in choices)
